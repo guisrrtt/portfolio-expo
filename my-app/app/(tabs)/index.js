@@ -1,7 +1,18 @@
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, Linking, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import * as NavigationBar from 'expo-navigation-bar';
 
 export default function HomeScreen() {
+
+    useEffect(() => {
+        NavigationBar.setVisibilityAsync('hidden');
+        NavigationBar.setBehaviorAsync('overlay-swipe');
+
+        return () => {
+            NavigationBar.setVisibilityAsync('visible');
+        };
+    }, []);
 
     const handleLinkPress = (url) => {
         Linking.openURL(url).catch(err => console.error("Não foi possível carregar a página", err));
