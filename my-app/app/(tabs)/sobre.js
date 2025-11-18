@@ -7,7 +7,7 @@ export default function SobreScreen() {
 
             <View style={styles.card}>
                 <Text style={styles.subTitle}>Base do Desenvolvimento</Text>
-                <Text style={styles.text}>- Linguagem: JavaScript (ES6+)</Text>
+                <Text style={styles.text}>- Linguagem: JavaScript</Text>
                 <Text style={styles.text}>- Framework: React Native</Text>
                 <Text style={styles.text}>- Runtime: Expo CLI</Text>
             </View>
@@ -17,7 +17,6 @@ export default function SobreScreen() {
                 <Text style={styles.text}>- Roteamento: Expo Router (Abas)</Text>
                 <Text style={styles.text}>- Estilização: React Native StyleSheet</Text>
                 <Text style={styles.text}>- Ícones: @expo/vector-icons (Ionicons)</Text>
-                <Text style={styles.text}>- Componentes: View, Text, ScrollView, Pressable</Text>
             </View>
 
             <View style={styles.card}>
@@ -42,7 +41,7 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         marginBottom: 20,
         width: '100%',
-        textAlign: 'left',
+        textAlign: 'center',
     },
     card: {
         backgroundColor: '#333',
@@ -55,11 +54,11 @@ const styles = StyleSheet.create({
     subTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#4CAF50',
+        color: '#00ff55ff',
         marginBottom: 10,
     },
     text: {
-        color: '#CCCCCC',
+        color: '#e4e4e4ff',
         fontSize: 16,
         marginBottom: 5
     },

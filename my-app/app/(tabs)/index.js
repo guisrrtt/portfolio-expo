@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 export default function HomeScreen() {
 
     const handleLinkPress = (url) => {
-        Linking.openURL(url).catch(err => console.error("Couldn't load page", err));
+        Linking.openURL(url).catch(err => console.error("Não foi possível carregar a página", err));
     };
 
     return (
@@ -30,16 +30,16 @@ export default function HomeScreen() {
             <Text style={styles.contactText}>Conecte-se Comigo</Text>
 
             <View style={styles.contactGrid}>
-                <Pressable style={styles.contactLink} onPress={() => handleLinkPress('mailto:seu.email@exemplo.com')}>
-                    <Ionicons name="mail" size={24} color="#007AFF" />
+                <Pressable style={styles.contactLink} onPress={() => handleLinkPress('mailto:serrettiguilherme@gmail.com')}>
+                    <Ionicons name="mail" size={24} color="#00ff55ff" />
                     <Text style={styles.contactLabel}>Email</Text>
                 </Pressable>
-                <Pressable style={styles.contactLink} onPress={() => handleLinkPress('link-linkedin')}>
-                    <Ionicons name="logo-linkedin" size={24} color="#007AFF" />
+                <Pressable style={styles.contactLink} onPress={() => handleLinkPress('https://www.linkedin.com/in/guilherme-serretti-3a164726a/')}>
+                    <Ionicons name="logo-linkedin" size={24} color="#00ff55ff" />
                     <Text style={styles.contactLabel}>LinkedIn</Text>
                 </Pressable>
-                <Pressable style={styles.contactLink} onPress={() => handleLinkPress('link-github')}>
-                    <Ionicons name="logo-github" size={24} color="#007AFF" />
+                <Pressable style={styles.contactLink} onPress={() => handleLinkPress('https://github.com/guisrrtt')}>
+                    <Ionicons name="logo-github" size={24} color="#00ff55ff" />
                     <Text style={styles.contactLabel}>GitHub</Text>
                 </Pressable>
             </View>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         borderRadius: 65,
         marginBottom: 20,
         borderWidth: 3,
-        borderColor: '#4CAF50',
+        borderColor: '#000000ff',
     },
     heading1: {
         fontSize: 28,
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     },
     developerTitle: {
         fontSize: 18,
-        color: '#007AFF',
+        color: '#00ff55ff',
         marginBottom: 25,
     },
     bioContainer: {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     },
     paragraph: {
         fontSize: 16,
-        color: '#CCCCCC',
+        color: '#e4e4e4ff',
         textAlign: 'center',
         lineHeight: 24,
         marginBottom: 20,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     },
     contactLabel: {
         fontSize: 14,
-        color: '#007AFF',
+        color: '#00ff55ff',
         marginTop: 5,
     },
 });

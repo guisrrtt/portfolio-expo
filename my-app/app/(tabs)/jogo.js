@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, TextInput, Pressable, Alert } from 'react-native';
+import { Stack } from 'expo-router';
 import { FontAwesome } from '@expo/vector-icons';
 
 const palavras = [
-    'REACT', 'JAVASCRIPT', 'PYTHON', 'HTML', 'CSS',
-    'SWIFT', 'GO', 'PHP', 'KOTLIN',
-    'COMPONENTE', 'RUST', 'DART ', 'PYTHON',
-    'SQL', 'DJANGO', 'JAVA',
-    'RUBY', 'PASCAL', 'GIT', 'GITHUB',
-    'DELPHI', 'PERL', 'ASSEMBLY',
-    'COBOL', 'NEXTJS', 'NODEJS', 'VERCEL', 'LISP',
-    'TYPESCRIPT', 'ANGULAR', 'VUEJS', 'DOCKER', 'KUBERNETES'
+    'REACT', 'JAVASCRIPT', 'PYTHON', 'HTML', 'CSS', 'SWIFT', 'GO', 'PHP', 'KOTLIN', 'RUST',
+    'DART', 'SQL', 'JAVA', 'RUBY', 'TYPESCRIPT', 'ANGULAR', 'VUEJS', 'FLUTTER', 'NEXTJS',
+    'NODEJS', 'DOCKER', 'DELPHI', 'ASSEMBLY', 'NPM', 'MATLAB', 'SCALA', 'LUA', 'GLEAM',
+    'GOLANG', 'EXPO', 'ELIXIR', 'GROOVY', 'LISP', 'ZIG', 'FORTRAN', 'PROLOG', 'COBOL',
+    'PERL', 'R', 'MYSQL', 'POSTGREESQL', 'MONGODB', 'ORACLE', 'VERCEL', 'AWS', 'KUBERNETES',
+    'YARN', 'EXPRESS', 'DJANGO', 'FLASK', 'LARAVEL', 'PIP', 'SQLITE', 'MARIADB', 'ADA'
 ];
 
 const HangmanDrawing = ({ errors }) => {
@@ -32,6 +31,8 @@ const HangmanDrawing = ({ errors }) => {
 };
 
 export default function JogoScreen() {
+    const inputRef = useRef(null);
+
     const [palavraSecreta, setPalavraSecreta] = useState('');
     const [letrasCorretas, setLetrasCorretas] = useState([]);
     const [letrasErradas, setLetrasErradas] = useState([]);
@@ -47,6 +48,10 @@ export default function JogoScreen() {
         setTentativasRestantes(6);
         setStatusJogo('jogando');
         setLetraDigitada('');
+
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
     };
 
     const lidarComTentativa = () => {
@@ -57,11 +62,18 @@ export default function JogoScreen() {
 
         if (!letra || letra.length !== 1) {
             Alert.alert('Erro', 'Por favor, digite apenas uma letra.');
+
+            if (inputRef.current) {
+                inputRef.current.focus();
+            }
             return;
         }
 
         if (letrasCorretas.includes(letra) || letrasErradas.includes(letra)) {
             Alert.alert('Aviso', `A letra '${letra}' já foi tentada!`);
+            if (inputRef.current) {
+                inputRef.current.focus();
+            }
             return;
         }
 
@@ -70,6 +82,10 @@ export default function JogoScreen() {
         } else {
             setLetrasErradas([...letrasErradas, letra]);
             setTentativasRestantes(tentativasRestantes - 1);
+        }
+
+        if (inputRef.current) {
+            inputRef.current.focus();
         }
     };
 
@@ -91,7 +107,11 @@ export default function JogoScreen() {
         if (ganhou) {
             setStatusJogo('vitoria');
         }
-    }, [letrasCorretas, tentativasRestantes, palavraSecreta]);
+
+        if (statusJogo !== 'jogando' && inputRef.current) {
+            inputRef.current.blur();
+        }
+    }, [letrasCorretas, tentativasRestantes, palavraSecreta, statusJogo]);
 
     const palavraOculta = palavraSecreta.split('').map((letra, index) => (
         <Text key={index} style={styles.hiddenLetter}>
@@ -102,7 +122,7 @@ export default function JogoScreen() {
     const MensagemFinal = () => {
         const isVictory = statusJogo === 'vitoria';
         const messageStyle = isVictory ? styles.victoryText : styles.defeatText;
-        const message = isVictory ? 'Parabéns, você venceu!' : 'Você perdeu!';
+        const message = isVictory ? 'Você acertou!' : 'Você perdeu!';
 
         return (
             <View style={styles.messageContainer}>
@@ -125,8 +145,13 @@ export default function JogoScreen() {
 
     return (
         <View style={styles.container}>
+            <Stack.Screen options={{
+                headerTitle: "Jogo da Forca: Tech",
+                headerStyle: { backgroundColor: '#1E1E1E' },
+                headerTintColor: '#FFFFFF'
+            }} />
 
-            <Text style={styles.subtitle}>Tecnologias, Linguagens e Frameworks</Text>
+            <Text style={styles.subtitle}>Tecnologias e Ferramentas</Text>
 
             <HangmanDrawing errors={6 - tentativasRestantes} />
 
@@ -140,6 +165,7 @@ export default function JogoScreen() {
             {statusJogo === 'jogando' ? (
                 <View style={styles.inputForm}>
                     <TextInput
+                        ref={inputRef}
                         style={styles.textInput}
                         onChangeText={setLetraDigitada}
                         value={letraDigitada}
@@ -149,6 +175,7 @@ export default function JogoScreen() {
                         placeholderTextColor="#888"
                         editable={statusJogo === 'jogando'}
                         onSubmitEditing={lidarComTentativa}
+                        blurOnSubmit={false}
                     />
                     <Pressable
                         onPress={lidarComTentativa}
@@ -176,7 +203,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#1E1E1E',
     },
     subtitle: {
-        fontSize: 18,
+        fontSize: 22,
         color: '#FFD700',
         marginBottom: 20,
     },

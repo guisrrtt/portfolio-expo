@@ -38,7 +38,7 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="sobre"
                 options={{
-                    title: 'Tecnologias',
+                    title: 'Sobre',
                     tabBarIcon: ({ color }) => <TabBarIcon name="hardware-chip-outline" color={color} />,
                 }}
             />
