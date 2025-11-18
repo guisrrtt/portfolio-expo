@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "my-app",
+    "name": "Meu Portfólio App",
     "slug": "my-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
@@ -20,7 +20,10 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.guiserretti.myapp"
+      "package": "com.guiserretti.myapp",
+      "softwareKeyboardLayoutMode": "pan",
+      "fullscreen": true,
+      "systemUiVisibility": "lean_back"
     },
     "web": {
       "output": "static",
@@ -34,7 +37,7 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "#1E1E1E",
           "dark": {
             "backgroundColor": "#000000"
           }
@@ -56,6 +59,14 @@
     },
     "updates": {
       "url": "https://u.expo.dev/7ba48bf9-5572-4eeb-b347-d463e2d39c6b"
+    },
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1E1E1E",
+      "dark": {
+        "backgroundColor": "#000000"
+      }
     }
   }
 }
