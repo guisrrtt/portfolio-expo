@@ -21,6 +21,10 @@
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.guiserretti.myapp",
+      "androidNavigationBar": {
+        "visible": "sticky-immersive",
+        "backgroundColor": "#1E1E1E"
+      },
       "softwareKeyboardLayoutMode": "pan",
       "fullscreen": true,
       "systemUiVisibility": "lean_back"
